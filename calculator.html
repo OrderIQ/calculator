@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Калькулятор потерь | OrderIQ</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: #f0f2f5;
+            margin: 0;
+            padding: 20px;
+            color: #1a1e2b;
+        }
+        .container {
+            max-width: 750px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 32px;
+            padding: 24px 28px 36px;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+        }
+        h1 {
+            font-size: 1.8rem;
+            margin-top: 0;
+            margin-bottom: 0.25rem;
+            font-weight: 700;
+        }
+        .sub {
+            color: #2c3e66;
+            border-left: 4px solid #2a7f6e;
+            padding-left: 16px;
+            margin: 16px 0 24px 0;
+            font-weight: 500;
+        }
+        .field {
+            margin-bottom: 20px;
+        }
+        label {
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+        .hint {
+            font-size: 0.8rem;
+            font-weight: normal;
+            color: #5b6e8c;
+        }
+        input {
+            width: 100%;
+            padding: 14px 16px;
+            font-size: 1rem;
+            border: 1px solid #cfdfed;
+            border-radius: 20px;
+            background: white;
+            transition: 0.2s;
+        }
+        input:focus {
+            border-color: #2a7f6e;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(42,127,110,0.2);
+        }
+        .result-card {
+            background: #f8fafd;
+            border-radius: 28px;
+            padding: 20px 24px;
+            margin: 28px 0 20px;
+            border: 1px solid #e2edf7;
+        }
+        .result-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            gap: 8px;
+            padding: 12px 0;
+            border-bottom: 1px solid #e2edf7;
+            font-weight: 500;
+        }
+        .result-row:last-child {
+            border-bottom: none;
+        }
+        .total {
+            font-weight: 800;
+            font-size: 1.2rem;
+            background: #eaf5f2;
+            margin-top: 8px;
+            padding: 14px 16px;
+            border-radius: 24px;
+            color: #1a4e43;
+        }
+        .badge {
+            background: #2a7f6e10;
+            padding: 8px 12px;
+            border-radius: 40px;
+            font-size: 0.75rem;
+            text-align: center;
+            color: #1e5a4d;
+        }
+        .cta {
+            margin-top: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .btn {
+            display: block;
+            text-align: center;
+            background: #1e5a4d;
+            color: white;
+            text-decoration: none;
+            padding: 14px 28px;
+            border-radius: 40px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .btn-outline {
+            background: transparent;
+            color: #1e5a4d;
+            border: 2px solid #1e5a4d;
+        }
+        .btn:hover {
+            background: #13453b;
+            transform: translateY(-2px);
+        }
+        .btn-outline:hover {
+            background: #eaf5f2;
+            transform: translateY(-2px);
+        }
+        .footer {
+            font-size: 0.75rem;
+            color: #7c8ba0;
+            text-align: center;
+            margin-top: 32px;
+            border-top: 1px solid #e2edf7;
+            padding-top: 20px;
+        }
+        @media (max-width: 500px) {
+            .container {
+                padding: 16px 20px 24px;
+            }
+            h1 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>📉 Калькулятор потерь</h1>
+    <div class="sub">Сколько вы теряете на дефицитах, сверхзапасах и ручном управлении</div>
+
+    <div class="field">
+        <label>💰 Среднемесячная выручка <span class="hint">(₽)</span></label>
+        <input type="text" id="revenue" value="15 000 000" inputmode="numeric">
+    </div>
+
+    <div class="field">
+        <label>📦 Количество SKU <span class="hint">(товарных позиций)</span></label>
+        <input type="text" id="sku" value="1 500" inputmode="numeric">
+    </div>
+
+    <div class="field">
+        <label>⏱️ Средний срок поставки (LT) <span class="hint">(дней)</span></label>
+        <input type="number" id="lt" value="90" step="10">
+    </div>
+
+    <div class="field">
+        <label>📊 Ошибка прогноза продаж <span class="hint">(%)</span></label>
+        <input type="number" id="forecastError" value="30" step="5">
+        <div class="badge">Если не знаете — поставьте 30% (среднее по рынку)</div>
+    </div>
+
+    <div class="field">
+        <label>👥 Сотрудников в планировании продаж и заказов</label>
+        <input type="number" id="staffCount" value="5" step="1">
+    </div>
+
+    <div class="result-card" id="resultBlock">
+        <div style="font-weight:700; margin-bottom:12px;">🔍 Ваши ежемесячные потери</div>
+        <div class="result-row"><span>🔴 Дефициты (потерянная маржа)</span> <span id="shortageRub">— ₽</span></div>
+        <div class="result-row"><span>📉 Неоптимальная оборачиваемость</span> <span id="turnoverRub">— ₽</span></div>
+        <div class="result-row"><span>📦 Сверхзапасы</span> <span id="overstockRub">— ₽</span></div>
+        <div class="result-row"><span>⏱️ Ручные расчёты в Excel</span> <span id="manualRub">— ₽</span></div>
+        <div class="result-row total"><span>💰 ИТОГО в месяц</span> <span id="totalMonth">— ₽</span></div>
+        <div class="result-row" style="font-size:0.9rem;"><span>📅 За год</span> <span id="totalYear">— ₽</span></div>
+    </div>
+
+    <div class="cta">
+        <a href="https://order-iq.ru/" target="_blank" class="btn">📩 Получить персональный разбор</a>
+        <a href="https://order-iq.ru/" target="_blank" class="btn btn-outline">⚡ Попробуйте OrderIQ 14 дней бесплатно</a>
+    </div>
+    <div class="footer">
+        Методика расчёта основана на реальных данных компаний, перешедших от Excel к OrderIQ.<br>
+        Результат — консервативная оценка. Ваши цифры могут быть выше.
+    </div>
+</div>
+
+<script>
+    // Функция форматирования чисел с разделением разрядов
+    function formatNumber(num) {
+        return Math.round(num).toLocaleString('ru-RU');
+    }
+
+    function formatMoney(value) {
+        return formatNumber(value) + ' ₽';
+    }
+
+    // Функция парсинга числа из строки с пробелами
+    function parseNumber(value) {
+        if (typeof value === 'string') {
+            return parseFloat(value.replace(/\s/g, '')) || 0;
+        }
+        return value || 0;
+    }
+
+    function calculate() {
+        // Получаем значения
+        let revenueRaw = document.getElementById('revenue').value;
+        let skuRaw = document.getElementById('sku').value;
+        let lt = parseFloat(document.getElementById('lt').value);
+        let forecastError = parseFloat(document.getElementById('forecastError').value);
+        let staff = parseFloat(document.getElementById('staffCount').value);
+
+        let revenue = parseNumber(revenueRaw);
+        let sku = parseNumber(skuRaw);
+
+        if (isNaN(revenue)) revenue = 0;
+        if (isNaN(sku)) sku = 0;
+        if (isNaN(lt)) lt = 0;
+        if (isNaN(forecastError)) forecastError = 30;
+        if (isNaN(staff)) staff = 0;
+
+        // Стоимость каждого месяца оборачиваемости (18% годовых / 12)
+        let monthTurnoverCost = revenue * 0.18 / 12;
+
+        // 1. Потери от дефицитов (потерянная маржа)
+        // Формула: Выручка × (Ошибка_прогноза / 100) × 0.3 × 0.7 × 0,1
+        let shortage = revenue * (forecastError / 100) * 0.3 * 0.7 * 0.1;
+
+        // 2. Потери от неоптимальной оборачиваемости (избыточный страховой запас)
+        // Формула: (Выручка * 0,18 / 12) × (Ошибка_прогноза / 100) × (LT / 90)
+        let turnoverLoss = monthTurnoverCost * (forecastError / 100) * (lt / 90);
+
+        // 3. Потери от сверхзапасов
+        // Формула: (Выручка * 0,18 / 12) × 0.05 × (1 + SKU/5000) × (1 + LT/180)
+        let overstock = monthTurnoverCost * 0.05 * (1 + sku / 5000) * (1 + lt / 180);
+
+        // 4. Потери от ручных расчётов
+        let manualCost = staff * 150000 * 0.4;
+
+        // Итоги
+        let totalMonth = shortage + turnoverLoss + overstock + manualCost;
+        let totalYear = totalMonth * 12;
+
+        // Отображение
+        document.getElementById('shortageRub').innerText = formatMoney(shortage);
+        document.getElementById('turnoverRub').innerText = formatMoney(turnoverLoss);
+        document.getElementById('overstockRub').innerText = formatMoney(overstock);
+        document.getElementById('manualRub').innerText = formatMoney(manualCost);
+        document.getElementById('totalMonth').innerText = formatMoney(totalMonth);
+        document.getElementById('totalYear').innerText = formatMoney(totalYear);
+    }
+
+    // Обработчики событий для полей с форматированием
+    const revenueInput = document.getElementById('revenue');
+    const skuInput = document.getElementById('sku');
+
+    revenueInput.addEventListener('input', function(e) {
+        let raw = e.target.value.replace(/\s/g, '');
+        if (/^\d*$/.test(raw)) {
+            let num = parseFloat(raw);
+            if (!isNaN(num)) {
+                e.target.value = formatNumber(num);
+            }
+        }
+        calculate();
+    });
+
+    skuInput.addEventListener('input', function(e) {
+        let raw = e.target.value.replace(/\s/g, '');
+        if (/^\d*$/.test(raw)) {
+            let num = parseFloat(raw);
+            if (!isNaN(num)) {
+                e.target.value = formatNumber(num);
+            }
+        }
+        calculate();
+    });
+
+    // Остальные поля
+    document.getElementById('lt').addEventListener('input', calculate);
+    document.getElementById('forecastError').addEventListener('input', calculate);
+    document.getElementById('staffCount').addEventListener('input', calculate);
+
+    // Инициализация расчёта
+    calculate();
+</script>
+</body>
+</html>
