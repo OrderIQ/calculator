@@ -107,7 +107,7 @@
             align-items: baseline;
             flex-wrap: wrap;
             gap: 8px;
-            padding: 8px 0;
+            padding: 10px 0;
             border-bottom: 1px solid #e2edf7;
             font-weight: 500;
             font-size: 0.85rem;
@@ -117,7 +117,7 @@
         }
         .total-block {
             text-align: center;
-            margin: 16px 0;
+            margin: 20px 0 16px;
         }
         .total-label {
             font-weight: 600;
@@ -137,9 +137,14 @@
             line-height: 1.2;
         }
         .total-year {
-            font-size: 1rem;
-            font-weight: 600;
+            font-size: 1.1rem;
+            font-weight: 700;
             color: #2c3e66;
+            background: #f0f2f5;
+            display: inline-block;
+            padding: 6px 20px;
+            border-radius: 40px;
+            margin-top: 8px;
         }
         .solution-block {
             background: #fff8e7;
@@ -262,15 +267,15 @@
     <div class="result-card">
         <div style="font-weight:700; margin-bottom:6px; font-size:0.85rem;">🔍 ВАШИ ЕЖЕМЕСЯЧНЫЕ ПОТЕРИ</div>
         <div class="result-row"><span>🔴 Дефициты (потерянная маржа)</span> <span id="shortageRub">— ₽</span></div>
-        <div class="result-row"><span>📉 Неоптимальная оборачиваемость</span> <span id="turnoverRub">— ₽</span></div>
-        <div class="result-row"><span>📦 Сверхзапасы</span> <span id="overstockRub">— ₽</span></div>
-        <div class="result-row"><span>⏱️ Ручные расчёты в Excel</span> <span id="manualRub">— ₽</span></div>
+        <div class="result-row"><span>📉 Неоптимальная оборачиваемость (стоимость замороженных денег)</span> <span id="turnoverRub">— ₽</span></div>
+        <div class="result-row"><span>📦 Сверхзапасы (стоимость замороженных денег)</span> <span id="overstockRub">— ₽</span></div>
+        <div class="result-row"><span>⏱️ Ручные расчёты в Excel (переплата за рабочие часы)</span> <span id="manualRub">— ₽</span></div>
     </div>
 
     <div class="total-block">
         <div class="total-label">💸 ВЫ ТЕРЯЕТЕ</div>
         <div class="total-amount" id="totalMonthDisplay">0 ₽</div>
-        <div class="total-year" id="totalYearDisplay">0 ₽ в ГОД</div>
+        <div class="total-year" id="totalYearDisplay">0 ₽ в год</div>
     </div>
 
     <div class="solution-block">
@@ -336,7 +341,7 @@
         document.getElementById('overstockRub').innerHTML = formatMoney(overstock);
         document.getElementById('manualRub').innerHTML = formatMoney(manualCost);
         document.getElementById('totalMonthDisplay').innerHTML = formatMoney(totalMonth);
-        document.getElementById('totalYearDisplay').innerHTML = formatMoney(totalYear);
+        document.getElementById('totalYearDisplay').innerHTML = formatNumber(totalYear) + ' ₽ в год';
     }
 
     const revenueInput = document.getElementById('revenue');
