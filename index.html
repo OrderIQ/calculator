@@ -319,23 +319,26 @@
         if (isNaN(forecastError)) forecastError = 30;
         if (isNaN(staff)) staff = 1;
 
+        // Стоимость каждого месяца оборачиваемости (18% годовых / 12)
         let monthTurnoverCost = revenue * 0.18 / 12;
 
-        // Дефициты: ~1 млн при стартовых
-        let shortage = revenue * 0.045 + revenue * (forecastError / 100) * 0.2;
+        // 1. Дефициты (потерянная маржа) - целевое значение ~1 125 000 ₽
+        let shortage = revenue * 0.03 + revenue * (forecastError / 100) * 0.15;
 
-        // Неоптимальная оборачиваемость: ~450k при стартовых
-        let turnoverLoss = monthTurnoverCost * 0.45 * (lt / 90) * (forecastError / 30);
+        // 2. Неоптимальная оборачиваемость - целевое значение ~360 000 ₽
+        let turnoverLoss = monthTurnoverCost * 1.6 * (lt / 90) * (forecastError / 30);
 
-        // Сверхзапасы: ~150k при стартовых
-        let overstock = monthTurnoverCost * 0.08 * (1 + sku / 3000) * (lt / 90);
+        // 3. Сверхзапасы - целевое значение ~118 000 ₽
+        let overstock = monthTurnoverCost * 0.35 * (1 + sku / 3000) * (lt / 90);
 
-        // Ручные расчёты
+        // 4. Ручные расчёты (фиксированная часть)
         let manualCost = staff * 150000 * 0.4;
 
+        // Итоги
         let totalMonth = shortage + turnoverLoss + overstock + manualCost;
         let totalYear = totalMonth * 12;
 
+        // Отображение
         document.getElementById('shortageRub').innerHTML = formatMoney(shortage);
         document.getElementById('turnoverRub').innerHTML = formatMoney(turnoverLoss);
         document.getElementById('overstockRub').innerHTML = formatMoney(overstock);
@@ -344,6 +347,7 @@
         document.getElementById('totalYearDisplay').innerHTML = formatNumber(totalYear) + ' ₽ в год';
     }
 
+    // Обработчики событий с форматированием
     const revenueInput = document.getElementById('revenue');
     const skuInput = document.getElementById('sku');
 
@@ -373,6 +377,7 @@
     document.getElementById('forecastError').addEventListener('input', calculate);
     document.getElementById('staffCount').addEventListener('input', calculate);
 
+    // Инициализация
     calculate();
 </script>
 </body>
