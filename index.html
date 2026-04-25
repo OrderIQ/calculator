@@ -12,54 +12,53 @@
             font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
             background: #f0f2f5;
             margin: 0;
-            padding: 16px;
-            color: #1a1e2b;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         .container {
-            max-width: 680px;
+            max-width: 800px;
+            width: 100%;
             margin: 0 auto;
             background: white;
             border-radius: 32px;
-            padding: 20px 24px 32px;
+            padding: 24px 28px 32px;
             box-shadow: 0 12px 30px rgba(0,0,0,0.08);
         }
         h1 {
             font-size: 1.6rem;
-            margin-top: 0;
-            margin-bottom: 0.25rem;
+            margin: 0 0 8px 0;
             font-weight: 700;
             line-height: 1.3;
-        }
-        .sub {
-            color: #2c3e66;
-            border-left: 4px solid #2a7f6e;
-            padding-left: 14px;
-            margin: 12px 0 20px 0;
-            font-weight: 500;
-            font-size: 0.95rem;
-        }
-        .image-placeholder {
             text-align: center;
-            margin: 16px 0;
         }
-        .image-placeholder img {
+        .image-container {
+            text-align: center;
+            margin: 16px 0 20px;
+        }
+        .image-container img {
             max-width: 100%;
             height: auto;
-            border-radius: 16px;
+            border-radius: 20px;
         }
         .form-grid {
             display: flex;
             flex-direction: column;
-            gap: 14px;
+            gap: 12px;
         }
-        .field-row {
+        .form-row {
             display: flex;
             gap: 16px;
             flex-wrap: wrap;
         }
-        .field {
+        .form-row .field {
             flex: 1;
             min-width: 140px;
+        }
+        .field {
+            margin-bottom: 0;
         }
         label {
             font-weight: 600;
@@ -74,8 +73,8 @@
         }
         input {
             width: 100%;
-            padding: 12px 14px;
-            font-size: 0.95rem;
+            padding: 10px 12px;
+            font-size: 0.9rem;
             border: 1px solid #cfdfed;
             border-radius: 20px;
             background: white;
@@ -93,13 +92,13 @@
             font-size: 0.7rem;
             text-align: center;
             color: #1e5a4d;
-            margin-top: 6px;
+            margin-top: 8px;
         }
         .result-card {
             background: #f8fafd;
             border-radius: 24px;
-            padding: 16px 20px;
-            margin: 24px 0 20px;
+            padding: 14px 18px;
+            margin: 20px 0 16px;
             border: 1px solid #e2edf7;
         }
         .result-row {
@@ -108,47 +107,55 @@
             align-items: baseline;
             flex-wrap: wrap;
             gap: 8px;
-            padding: 10px 0;
+            padding: 8px 0;
             border-bottom: 1px solid #e2edf7;
             font-weight: 500;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
         }
         .result-row:last-child {
             border-bottom: none;
         }
-        .total {
-            font-weight: 800;
-            font-size: 1.1rem;
-            background: #eaf5f2;
-            margin-top: 8px;
-            padding: 12px 14px;
-            border-radius: 20px;
+        .total-block {
+            text-align: center;
+            margin: 16px 0;
+        }
+        .total-label {
+            font-weight: 600;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
             color: #1a4e43;
         }
-        .big-total {
-            text-align: center;
-            margin: 20px 0 16px;
-        }
-        .big-total .sum {
-            font-size: 2rem;
+        .total-amount {
+            font-size: 2.2rem;
             font-weight: 800;
             color: #1a4e43;
             background: #eaf5f2;
             display: inline-block;
-            padding: 8px 24px;
+            padding: 8px 28px;
             border-radius: 60px;
+            margin: 6px 0 4px;
+            line-height: 1.2;
+        }
+        .total-year {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #2c3e66;
         }
         .solution-block {
             background: #fff8e7;
             border-left: 4px solid #f5a623;
-            padding: 16px 20px;
+            padding: 14px 16px;
             border-radius: 20px;
-            margin: 20px 0;
+            margin: 20px 0 20px;
             text-align: center;
         }
         .solution-block p {
-            margin: 0 0 8px;
+            margin: 0 0 6px;
             font-weight: 600;
+        }
+        .solution-block .big-text {
+            font-size: 1.2rem;
+            font-weight: 800;
         }
         .free-badge {
             background: #f5a62320;
@@ -165,7 +172,7 @@
             background: #1e5a4d;
             color: white;
             text-decoration: none;
-            padding: 16px 24px;
+            padding: 14px 20px;
             border-radius: 60px;
             font-weight: 700;
             font-size: 1rem;
@@ -178,31 +185,26 @@
             background: #13453b;
             transform: translateY(-2px);
         }
-        .footer {
-            font-size: 0.7rem;
-            color: #7c8ba0;
-            text-align: center;
-            margin-top: 28px;
-            border-top: 1px solid #e2edf7;
-            padding-top: 16px;
-        }
-        @media (max-width: 550px) {
+        @media (max-width: 600px) {
             body {
                 padding: 12px;
             }
             .container {
-                padding: 16px 18px 24px;
+                padding: 18px 20px 24px;
             }
             h1 {
                 font-size: 1.3rem;
             }
-            .field-row {
+            .form-row {
                 flex-direction: column;
-                gap: 12px;
+                gap: 10px;
             }
-            .big-total .sum {
-                font-size: 1.5rem;
-                padding: 6px 16px;
+            .total-amount {
+                font-size: 1.6rem;
+                padding: 6px 20px;
+            }
+            .result-card {
+                padding: 10px 14px;
             }
         }
     </style>
@@ -224,29 +226,27 @@
 <div class="container">
     <h1>💰 Узнай сколько ты теряешь каждый месяц на ошибках в закупках</h1>
     
-    <!-- Место для вашего изображения -->
-    <div class="image-placeholder">
-        <img src="photo_2026-04-25_14-23-37.jpg" alt="Калькулятор потерь" style="width:100%; max-width:400px; border-radius:16px;">
+    <div class="image-container">
+        <img src="photo_2026-04-25_14-23-37.jpg" alt="Калькулятор потерь">
     </div>
 
     <div class="form-grid">
-        <div class="field">
-            <label>💰 Среднемесячная выручка <span class="hint">(₽)</span></label>
-            <input type="text" id="revenue" value="15 000 000" inputmode="numeric">
-        </div>
-
-        <div class="field-row">
+        <div class="form-row">
+            <div class="field">
+                <label>💰 Среднемесячная выручка <span class="hint">(₽)</span></label>
+                <input type="text" id="revenue" value="15 000 000" inputmode="numeric">
+            </div>
             <div class="field">
                 <label>📦 Количество SKU</label>
                 <input type="text" id="sku" value="1 500" inputmode="numeric">
             </div>
+        </div>
+
+        <div class="form-row">
             <div class="field">
                 <label>⏱️ Срок поставки (LT) <span class="hint">(дней)</span></label>
                 <input type="number" id="lt" value="90" step="10">
             </div>
-        </div>
-
-        <div class="field-row">
             <div class="field">
                 <label>📊 Ошибка прогноза <span class="hint">(%)</span></label>
                 <input type="number" id="forecastError" value="30" step="5">
@@ -259,32 +259,27 @@
         <div class="badge">📌 Если не знаете ошибку прогноза — поставьте 30% (среднее по рынку)</div>
     </div>
 
-    <div class="result-card" id="resultBlock">
-        <div style="font-weight:700; margin-bottom:8px;">🔍 ВАШИ ЕЖЕМЕСЯЧНЫЕ ПОТЕРИ</div>
+    <div class="result-card">
+        <div style="font-weight:700; margin-bottom:6px; font-size:0.85rem;">🔍 ВАШИ ЕЖЕМЕСЯЧНЫЕ ПОТЕРИ</div>
         <div class="result-row"><span>🔴 Дефициты (потерянная маржа)</span> <span id="shortageRub">— ₽</span></div>
         <div class="result-row"><span>📉 Неоптимальная оборачиваемость</span> <span id="turnoverRub">— ₽</span></div>
         <div class="result-row"><span>📦 Сверхзапасы</span> <span id="overstockRub">— ₽</span></div>
         <div class="result-row"><span>⏱️ Ручные расчёты в Excel</span> <span id="manualRub">— ₽</span></div>
     </div>
 
-    <div class="big-total">
-        <div style="font-weight:600; margin-bottom:8px;">💸 ВЫ ТЕРЯЕТЕ</div>
-        <div class="sum" id="totalMonthDisplay">0 ₽</div>
-        <div style="font-size:0.85rem; margin-top:6px;" id="totalYearDisplay">0 ₽ в год</div>
+    <div class="total-block">
+        <div class="total-label">💸 ВЫ ТЕРЯЕТЕ</div>
+        <div class="total-amount" id="totalMonthDisplay">0 ₽</div>
+        <div class="total-year" id="totalYearDisplay">0 ₽ в ГОД</div>
     </div>
 
     <div class="solution-block">
         <p>🔥 Но не всё потеряно</p>
-        <p style="font-size:1.2rem; font-weight:700;">РЕШЕНИЕ ЕСТЬ</p>
+        <p class="big-text">РЕШЕНИЕ ЕСТЬ</p>
         <span class="free-badge">ЭТО БЕСПЛАТНО</span>
     </div>
 
     <a href="https://order-iq.ru/" target="_blank" class="btn">🚀 Узнать, как перестать терять деньги из-за ошибок в закупках</a>
-    
-    <div class="footer">
-        Методика расчёта основана на реальных данных компаний, перешедших от Excel к OrderIQ.<br>
-        Результат — консервативная оценка. Ваши цифры могут быть выше.
-    </div>
 </div>
 
 <script>
@@ -319,19 +314,18 @@
         if (isNaN(forecastError)) forecastError = 30;
         if (isNaN(staff)) staff = 1;
 
-        // Стоимость месяца оборачиваемости (18% годовых / 12)
         let monthTurnoverCost = revenue * 0.18 / 12;
 
-        // 1. Дефициты: делаем ~1 млн при стартовых значениях
+        // Дефициты: ~1 млн при стартовых
         let shortage = revenue * 0.045 + revenue * (forecastError / 100) * 0.2;
 
-        // 2. Неоптимальная оборачиваемость: ~450k при стартовых значениях
+        // Неоптимальная оборачиваемость: ~450k при стартовых
         let turnoverLoss = monthTurnoverCost * 0.45 * (lt / 90) * (forecastError / 30);
 
-        // 3. Сверхзапасы: ~150k при стартовых значениях
+        // Сверхзапасы: ~150k при стартовых
         let overstock = monthTurnoverCost * 0.08 * (1 + sku / 3000) * (lt / 90);
 
-        // 4. Ручные расчёты
+        // Ручные расчёты
         let manualCost = staff * 150000 * 0.4;
 
         let totalMonth = shortage + turnoverLoss + overstock + manualCost;
@@ -342,10 +336,9 @@
         document.getElementById('overstockRub').innerHTML = formatMoney(overstock);
         document.getElementById('manualRub').innerHTML = formatMoney(manualCost);
         document.getElementById('totalMonthDisplay').innerHTML = formatMoney(totalMonth);
-        document.getElementById('totalYearDisplay').innerHTML = formatMoney(totalYear) + ' в год';
+        document.getElementById('totalYearDisplay').innerHTML = formatMoney(totalYear);
     }
 
-    // Обработчики с форматированием
     const revenueInput = document.getElementById('revenue');
     const skuInput = document.getElementById('sku');
 
