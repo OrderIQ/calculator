@@ -24,29 +24,20 @@
             margin: 0 auto;
             background: white;
             border-radius: 32px;
-            padding: 24px 28px 32px;
+            padding: 20px 24px 28px;
             box-shadow: 0 12px 30px rgba(0,0,0,0.08);
         }
         h1 {
-            font-size: 1.6rem;
-            margin: 0 0 8px 0;
+            font-size: 1.5rem;
+            margin: 0 0 6px 0;
             font-weight: 700;
             line-height: 1.3;
             text-align: center;
         }
-        .image-container {
-            text-align: center;
-            margin: 16px 0 20px;
-        }
-        .image-container img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 20px;
-        }
         .form-grid {
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 10px;
         }
         .form-row {
             display: flex;
@@ -62,18 +53,18 @@
         }
         label {
             font-weight: 600;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             display: block;
-            margin-bottom: 6px;
+            margin-bottom: 4px;
         }
         .hint {
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             font-weight: normal;
             color: #5b6e8c;
         }
         input {
             width: 100%;
-            padding: 10px 12px;
+            padding: 8px 12px;
             font-size: 0.9rem;
             border: 1px solid #cfdfed;
             border-radius: 20px;
@@ -87,19 +78,24 @@
         }
         .badge {
             background: #2a7f6e10;
-            padding: 6px 10px;
+            padding: 4px 10px;
             border-radius: 40px;
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             text-align: center;
             color: #1e5a4d;
-            margin-top: 8px;
+            margin-top: 6px;
         }
         .result-card {
             background: #f8fafd;
-            border-radius: 24px;
-            padding: 14px 18px;
-            margin: 20px 0 16px;
+            border-radius: 20px;
+            padding: 12px 16px;
+            margin: 16px 0 12px;
             border: 1px solid #e2edf7;
+        }
+        .result-title {
+            font-weight: 700;
+            margin-bottom: 6px;
+            font-size: 0.8rem;
         }
         .result-row {
             display: flex;
@@ -107,7 +103,7 @@
             align-items: baseline;
             flex-wrap: wrap;
             gap: 8px;
-            padding: 10px 0;
+            padding: 8px 0;
             border-bottom: 1px solid #e2edf7;
             font-weight: 500;
             font-size: 0.85rem;
@@ -117,59 +113,60 @@
         }
         .total-block {
             text-align: center;
-            margin: 20px 0 16px;
+            margin: 12px 0;
         }
         .total-label {
             font-weight: 600;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             letter-spacing: 1px;
             color: #1a4e43;
         }
         .total-amount {
-            font-size: 2.2rem;
+            font-size: 2rem;
             font-weight: 800;
             color: #1a4e43;
             background: #eaf5f2;
             display: inline-block;
-            padding: 8px 28px;
-            border-radius: 60px;
-            margin: 6px 0 4px;
+            padding: 6px 24px;
+            border-radius: 50px;
+            margin: 4px 0;
             line-height: 1.2;
         }
         .total-year {
-            font-size: 1.1rem;
+            font-size: 0.9rem;
             font-weight: 700;
             color: #2c3e66;
             background: #f0f2f5;
             display: inline-block;
-            padding: 6px 20px;
+            padding: 4px 16px;
             border-radius: 40px;
-            margin-top: 8px;
         }
         .solution-block {
             background: #fff8e7;
             border-left: 4px solid #f5a623;
-            padding: 14px 16px;
-            border-radius: 20px;
-            margin: 20px 0 20px;
+            padding: 8px 12px;
+            border-radius: 16px;
+            margin: 12px 0 16px;
             text-align: center;
         }
         .solution-block p {
-            margin: 0 0 6px;
+            margin: 0;
             font-weight: 600;
+            font-size: 0.85rem;
         }
         .solution-block .big-text {
-            font-size: 1.2rem;
+            font-size: 1rem;
             font-weight: 800;
         }
         .free-badge {
             background: #f5a62320;
             display: inline-block;
-            padding: 4px 12px;
+            padding: 2px 10px;
             border-radius: 40px;
-            font-size: 0.8rem;
+            font-size: 0.7rem;
             font-weight: 600;
             color: #c47d10;
+            margin-top: 4px;
         }
         .btn {
             display: block;
@@ -177,10 +174,10 @@
             background: #1e5a4d;
             color: white;
             text-decoration: none;
-            padding: 14px 20px;
+            padding: 12px 20px;
             border-radius: 60px;
             font-weight: 700;
-            font-size: 1rem;
+            font-size: 0.9rem;
             border: none;
             cursor: pointer;
             transition: 0.2s;
@@ -195,21 +192,18 @@
                 padding: 12px;
             }
             .container {
-                padding: 18px 20px 24px;
+                padding: 16px 18px 20px;
             }
             h1 {
                 font-size: 1.3rem;
             }
             .form-row {
                 flex-direction: column;
-                gap: 10px;
+                gap: 8px;
             }
             .total-amount {
-                font-size: 1.6rem;
-                padding: 6px 20px;
-            }
-            .result-card {
-                padding: 10px 14px;
+                font-size: 1.5rem;
+                padding: 4px 16px;
             }
         }
     </style>
@@ -261,11 +255,10 @@
     </div>
 
     <div class="result-card">
-        <div style="font-weight:700; margin-bottom:6px; font-size:0.85rem;">🔍 ВАШИ ЕЖЕМЕСЯЧНЫЕ ПОТЕРИ</div>
-        <div class="result-row"><span>🔴 Дефициты (потерянная маржа)</span> <span id="shortageRub">— ₽</span></div>
-        <div class="result-row"><span>📉 Неоптимальная оборачиваемость (стоимость замороженных денег)</span> <span id="turnoverRub">— ₽</span></div>
-        <div class="result-row"><span>📦 Сверхзапасы (стоимость замороженных денег)</span> <span id="overstockRub">— ₽</span></div>
-        <div class="result-row"><span>⏱️ Ручные расчёты в Excel (переплата за рабочие часы)</span> <span id="manualRub">— ₽</span></div>
+        <div class="result-title">🔍 ВОТ ГДЕ ВЫ ТЕРЯЕТЕ ДЕНЬГИ:</div>
+        <div class="result-row"><span>🔴 Недополученная прибыль</span> <span id="shortageRub">— ₽</span></div>
+        <div class="result-row"><span>📦 Деньги заморожены в избыточных запасах</span> <span id="frozenMoneyRub">— ₽</span></div>
+        <div class="result-row"><span>⏱️ Переплата за ручной труд</span> <span id="manualRub">— ₽</span></div>
     </div>
 
     <div class="total-block">
@@ -275,8 +268,7 @@
     </div>
 
     <div class="solution-block">
-        <p>🔥 Но не всё потеряно</p>
-        <p class="big-text">РЕШЕНИЕ ЕСТЬ</p>
+        <p>🔥 Но не всё потеряно — <span class="big-text">РЕШЕНИЕ ЕСТЬ</span></p>
         <span class="free-badge">ЭТО БЕСПЛАТНО</span>
     </div>
 
@@ -318,26 +310,24 @@
         // Стоимость каждого месяца оборачиваемости (18% годовых / 12)
         let monthTurnoverCost = revenue * 0.18 / 12;
 
-        // 1. Дефициты (потерянная маржа) - целевое значение ~1 125 000 ₽
+        // 1. Недополученная прибыль (дефициты)
         let shortage = revenue * 0.03 + revenue * (forecastError / 100) * 0.15;
 
-        // 2. Неоптимальная оборачиваемость - целевое значение ~360 000 ₽
+        // 2. Замороженные деньги в избыточных запасах (неоптимальная оборачиваемость + сверхзапасы)
         let turnoverLoss = monthTurnoverCost * 1.6 * (lt / 90) * (forecastError / 30);
-
-        // 3. Сверхзапасы - целевое значение ~118 000 ₽
         let overstock = monthTurnoverCost * 0.35 * (1 + sku / 3000) * (lt / 90);
+        let frozenMoney = turnoverLoss + overstock;
 
-        // 4. Ручные расчёты (фиксированная часть)
+        // 3. Переплата за ручной труд
         let manualCost = staff * 150000 * 0.4;
 
         // Итоги
-        let totalMonth = shortage + turnoverLoss + overstock + manualCost;
+        let totalMonth = shortage + frozenMoney + manualCost;
         let totalYear = totalMonth * 12;
 
         // Отображение
         document.getElementById('shortageRub').innerHTML = formatMoney(shortage);
-        document.getElementById('turnoverRub').innerHTML = formatMoney(turnoverLoss);
-        document.getElementById('overstockRub').innerHTML = formatMoney(overstock);
+        document.getElementById('frozenMoneyRub').innerHTML = formatMoney(frozenMoney);
         document.getElementById('manualRub').innerHTML = formatMoney(manualCost);
         document.getElementById('totalMonthDisplay').innerHTML = formatMoney(totalMonth);
         document.getElementById('totalYearDisplay').innerHTML = formatNumber(totalYear) + ' ₽ в год';
